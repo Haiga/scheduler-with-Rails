@@ -1,24 +1,57 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Nome:</strong>
-  <%= @grupo_evento.nome %>
+  <strong>
+    <%= @grupo_evento.nome %>
+  </strong>
 </p>
 
 <p>
-  <strong>Descricao:</strong>
-  <%= @grupo_evento.descricao %>
+    <%= @grupo_evento.descricao %>
 </p>
 
 <p>
   <strong>Prioridade:</strong>
-  <%= @grupo_evento.prioridade %>
+  <%= get_priority(@grupo_evento.prioridade) %>
 </p>
+<hr>
+<% for event in @eventos_of_group%>
 
-<p>
-  <strong>User:</strong>
-  <%= @grupo_evento.user_id %>
-</p>
+  <p>
+    <strong>Grupo evento:</strong>
+    <%= event.grupo_evento.nome %>
+  </p>
 
+  <p>
+    <strong>Descricao:</strong>
+    <%= event.descricao %>
+  </p>
+
+  <p>
+    <strong>Dia:</strong>
+    <%= event.dia %>
+  </p>
+
+  <p>
+    <strong>Horario:</strong>
+    <%= event.horario.strftime("%I:%M%p") %>
+  </p>
+
+  <p>
+    <strong>Prioridade:</strong>
+    <%= get_priority(event.prioridade) %>
+  </p>
+
+  <p>
+    <strong>Estado:</strong>
+    <%= get_estado(event.estado) %>
+  </p>
+
+  <%= link_to 'Show', event %>
+  <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<hr>
 <%= link_to 'Edit', edit_grupo_evento_path(@grupo_evento) %> |
-<%= link_to 'Back', grupo_eventos_path %>
+<%= link_to 'Back', :back %>
+

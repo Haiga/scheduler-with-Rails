@@ -4,12 +4,13 @@ class GrupoEventosController < ApplicationController
   # GET /grupo_eventos
   # GET /grupo_eventos.json
   def index
-    @grupo_eventos = GrupoEvento.all
+    @grupo_eventos = GrupoEvento.all.where(user_id: current_user.id)
   end
 
   # GET /grupo_eventos/1
   # GET /grupo_eventos/1.json
   def show
+    @eventos_of_group = @grupo_evento.eventos
   end
 
   # GET /grupo_eventos/new
@@ -24,8 +25,8 @@ class GrupoEventosController < ApplicationController
   # POST /grupo_eventos
   # POST /grupo_eventos.json
   def create
-    @grupo_evento = GrupoEvento.new(grupo_evento_params)
-
+    #@grupo_evento = GrupoEvento.new(grupo_evento_params)
+    @grupo_evento = current_user.grupo_eventos.new(grupo_evento_params)
     respond_to do |format|
       if @grupo_evento.save
         format.html { redirect_to @grupo_evento, notice: 'Grupo evento was successfully created.' }

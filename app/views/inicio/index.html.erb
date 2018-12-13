@@ -4,13 +4,47 @@
     <li><%= current_user.email %></li>
     <li><%= link_to "Sair", destroy_user_session_path, method: :delete%></li>
   </ul>
+  <ul>
+    <li><%= link_to "Grupo de Eventos", grupo_eventos_path %></li>
+    <li><%= link_to "Evento", eventos_path %></li>
+  </ul>
+  <% for event in @events_day%>
+
+    <p>
+      <strong>Grupo evento:</strong>
+      <%= event.grupo_evento.nome %>
+    </p>
+
+    <p>
+      <strong>Descricao:</strong>
+      <%= event.descricao %>
+    </p>
+
+    <p>
+      <strong>Dia:</strong>
+      <%= event.dia %>
+    </p>
+
+    <p>
+      <strong>Horario:</strong>
+      <%= event.horario.strftime("%I:%M%p") %>
+    </p>
+
+    <p>
+      <strong>Prioridade:</strong>
+      <%= get_priority(event.prioridade) %>
+    </p>
+
+    <p>
+      <strong>Estado:</strong>
+      <%= get_estado(event.estado) %>
+    </p>
+
+    <%= link_to 'Show', event %>
+  <% end %>
 <% else %>
   <ul>
     <li><%= link_to "Cadastro", new_user_registration_path %></li>
     <li><%= link_to "Logar", new_user_session_path %></li>
   </ul>
 <% end %>
-<ul>
-  <li><%= link_to "Grupo de Eventos", grupo_eventos_path %></li>
-  <li><%= link_to "Evento", eventos_path %></li>
-</ul>

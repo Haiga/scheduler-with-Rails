@@ -1,10 +1,18 @@
 class EventosController < ApplicationController
   before_action :set_evento, only: [:show, :edit, :update, :destroy]
+  before_action :set_grupo_evento, only: [:new, :edit, :update, :index]
 
   # GET /eventos
   # GET /eventos.json
   def index
-    @eventos = Evento.all
+    @eventos = []
+    #@eventos = Evento.all
+    for grupo in @grupo_eventos
+      for evento in grupo.eventos
+        @eventos.push(evento)
+      end
+    end
+    @eventos.to_set
   end
 
   # GET /eventos/1
@@ -25,7 +33,7 @@ class EventosController < ApplicationController
   # POST /eventos.json
   def create
     @evento = Evento.new(evento_params)
-
+    #@evento = current_user.grupo_eventos[grupo_evento_id].eventos.new(evento_params)
     respond_to do |format|
       if @evento.save
         format.html { redirect_to @evento, notice: 'Evento was successfully created.' }
@@ -71,4 +79,9 @@ class EventosController < ApplicationController
     def evento_params
       params.require(:evento).permit(:dia, :horario, :descricao, :prioridade, :estado, :grupo_evento_id)
     end
+
+  def set_grupo_evento
+      @grupo_eventos = GrupoEvento.all.where(user_id: current_user.id)
+  end
+
 end

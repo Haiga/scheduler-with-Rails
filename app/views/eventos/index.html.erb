@@ -5,12 +5,12 @@
 <table>
   <thead>
     <tr>
-      <th>Dia</th>
-      <th>Horario</th>
-      <th>Descricao</th>
+      <th>Data</th>
+      <th>Horário</th>
+      <th>Descrição</th>
       <th>Prioridade</th>
       <th>Estado</th>
-      <th>Grupo evento</th>
+      <th>Grupo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,11 +19,11 @@
     <% @eventos.each do |evento| %>
       <tr>
         <td><%= evento.dia %></td>
-        <td><%= evento.horario %></td>
+        <td><%= evento.horario.strftime("%I:%M%p") %></td>
         <td><%= evento.descricao %></td>
-        <td><%= evento.prioridade %></td>
-        <td><%= evento.estado %></td>
-        <td><%= evento.grupo_evento_id %></td>
+        <td><%= get_priority(evento.prioridade) %></td>
+        <td><%= get_estado(evento.estado) %></td>
+        <td><%= evento.grupo_evento.nome %></td>
         <td><%= link_to 'Show', evento %></td>
         <td><%= link_to 'Edit', edit_evento_path(evento) %></td>
         <td><%= link_to 'Destroy', evento, method: :delete, data: { confirm: 'Are you sure?' } %></td>

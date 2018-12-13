@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Grupo evento:</strong>
+  <%= @evento.grupo_evento.nome %>
+</p>
+
+<p>
   <strong>Dia:</strong>
   <%= @evento.dia %>
 </p>
 
 <p>
   <strong>Horario:</strong>
-  <%= @evento.horario %>
+  <%= @evento.horario.strftime("%I:%M%p") %>
 </p>
 
 <p>
@@ -17,18 +22,15 @@
 
 <p>
   <strong>Prioridade:</strong>
-  <%= @evento.prioridade %>
+  <%= get_priority(@evento.prioridade) %>
 </p>
 
 <p>
   <strong>Estado:</strong>
-  <%= @evento.estado %>
+  <%= get_estado(@evento.estado) %>
 </p>
 
-<p>
-  <strong>Grupo evento:</strong>
-  <%= @evento.grupo_evento_id %>
-</p>
 
 <%= link_to 'Edit', edit_evento_path(@evento) %> |
-<%= link_to 'Back', eventos_path %>
+<%= link_to 'Back', :back %>
+

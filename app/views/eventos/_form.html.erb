@@ -28,17 +28,21 @@
 
   <div class="field">
     <%= form.label :prioridade %>
-    <%= form.number_field :prioridade %>
+    <%= form.select("prioridade",
+               options_for_select([["Muito Alta", 1],["Alta", 2], ["Normal", 3], ["Baixa", 4], ["Muito Baixa", 5]],
+                                  @evento.prioridade), {include_blank: true})%>
   </div>
 
   <div class="field">
     <%= form.label :estado %>
-    <%= form.check_box :estado %>
+    <%= form.select("estado",
+                    options_for_select([["Em Andamento", 'false'],["Concluído", 'true']],
+                                       @evento.estado), )%>
   </div>
 
   <div class="field">
-    <%= form.label :grupo_evento_id %>
-    <%= form.number_field :grupo_evento_id %>
+    <%= form.label "Grupo de Eventos" %>
+    <%= form.collection_select(:grupo_evento_id, @grupo_eventos, :id, :nome, include_blank: true) %>
   </div>
 
   <div class="actions">

@@ -23,12 +23,9 @@
 
   <div class="field">
     <%= form.label :prioridade %>
-    <%= form.text_field :prioridade %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.select("prioridade",
+               options_for_select([["Muito Alta", 1],["Alta", 2], ["Normal", 3], ["Baixa", 4], ["Muito Baixa", 5]],
+                                  @grupo_evento.prioridade),{include_blank: true})%>
   </div>
 
   <div class="actions">
