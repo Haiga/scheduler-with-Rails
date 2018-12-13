@@ -1,0 +1,16 @@
+<h1>Minha agenda</h1>
+<% if user_signed_in? %>
+  <ul>
+    <li><%= current_user.email %></li>
+    <li><%= link_to "Sair", destroy_user_session_path, method: :delete%></li>
+  </ul>
+<% else %>
+  <ul>
+    <li><%= link_to "Cadastro", new_user_registration_path %></li>
+    <li><%= link_to "Logar", new_user_session_path %></li>
+  </ul>
+<% end %>
+<ul>
+  <li><%= link_to "Grupo de Eventos", grupo_eventos_path %></li>
+  <li><%= link_to "Evento", eventos_path %></li>
+</ul>
