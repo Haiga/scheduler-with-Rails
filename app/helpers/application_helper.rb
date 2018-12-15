@@ -24,4 +24,7 @@ module ApplicationHelper
     end
     html
   end
+  def get_id(obj)
+    obj.id.to_s
+  end
 end

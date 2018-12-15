@@ -69,6 +69,16 @@ class EventosController < ApplicationController
     end
   end
 
+  def concluded
+    @evento = Evento.find(params[:id])
+    @evento.estado = true
+    @evento.save
+    respond_to do |format|
+      format.html { redirect_to @evento, notice: 'Evento was successfully updated.' }
+      format.json { render :show, status: :ok, location: @evento }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evento

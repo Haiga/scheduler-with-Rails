@@ -8,40 +8,40 @@
     <li><%= link_to "Grupo de Eventos", grupo_eventos_path %></li>
     <li><%= link_to "Evento", eventos_path %></li>
   </ul>
+
+  <ul class="user-profiles-list-basic">
   <% for event in @events_day%>
 
-    <p>
-      <strong>Grupo evento:</strong>
-      <%= event.grupo_evento.nome %>
-    </p>
 
-    <p>
-      <strong>Descricao:</strong>
-      <%= event.descricao %>
-    </p>
 
-    <p>
-      <strong>Dia:</strong>
-      <%= event.dia %>
-    </p>
+      <li>
+        <h3>
+          <strong>
+            <%= event.grupo_evento.nome %>
+          </strong>
+        </h3>
 
-    <p>
-      <strong>Horario:</strong>
-      <%= event.horario.strftime("%I:%M%p") %>
-    </p>
+        <p>
+          <h4>
+            <%= event.descricao %>
+          </h4>
+          <span>
+          <%= event.dia %>
+            <%= event.horario.strftime("%I:%M%p") %>
+          </span>
+        </p>
+        <p>
+          <%= link_to 'Show', event %>
+          <%= link_to 'Concluir','evento/concluir/'+get_id(event) %>
+        </p>
+        <a class="delete" href=""><i class="fa fa-close"></i></a>
 
-    <p>
-      <strong>Prioridade:</strong>
-      <%= get_priority(event.prioridade) %>
-    </p>
+      </li>
 
-    <p>
-      <strong>Estado:</strong>
-      <%= get_estado(event.estado) %>
-    </p>
 
-    <%= link_to 'Show', event %>
+
   <% end %>
+  </ul>
 <% else %>
   <ul>
     <li><%= link_to "Cadastro", new_user_registration_path %></li>

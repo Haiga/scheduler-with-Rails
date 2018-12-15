@@ -42,7 +42,7 @@
 
   <div class="field">
     <%= form.label "Grupo de Eventos" %>
-    <%= form.collection_select(:grupo_evento_id, @grupo_eventos, :id, :nome, include_blank: true) %>
+    <%= form.collection_select(:grupo_evento_id, @grupo_eventos, :id, :nome, include_blank: false) %>
   </div>
 
   <div class="actions">

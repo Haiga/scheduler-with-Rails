@@ -68,6 +68,7 @@ class GrupoEventosController < ApplicationController
       @grupo_evento = GrupoEvento.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def grupo_evento_params
       params.require(:grupo_evento).permit(:nome, :descricao, :prioridade, :user_id)
