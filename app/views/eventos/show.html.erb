@@ -1,36 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Grupo evento:</strong>
-  <%= @evento.grupo_evento.nome %>
+  <h1>
+    <%= @evento.grupo_evento.nome %>
+  </h1>
 </p>
 
 <p>
-  <strong>Dia:</strong>
+  <%if !@evento.dia.nil? %>
+  <strong>Data:</strong>
   <%= @evento.dia %>
+  <% end %>
 </p>
 
 <p>
-  <strong>Horario:</strong>
+  <%if !@evento.horario.nil? %>
+  <strong>Horário:</strong>
   <%= @evento.horario.strftime("%I:%M%p") %>
+  <% end %>
 </p>
 
 <p>
-  <strong>Descricao:</strong>
+  <%if !@evento.descricao.nil? %>
+  <strong>Descrição:</strong>
   <%= @evento.descricao %>
+  <% end %>
 </p>
 
 <p>
+  <%if !@evento.prioridade.nil? %>
   <strong>Prioridade:</strong>
   <%= get_priority(@evento.prioridade) %>
+  <% end %>
 </p>
 
 <p>
+  <%if !@evento.estado.nil? %>
   <strong>Estado:</strong>
   <%= get_estado(@evento.estado) %>
+  <% end %>
 </p>
 
 
-<%= link_to 'Edit', edit_evento_path(@evento) %> |
-<%= link_to 'Back', :back %>
+<%= link_to 'Editar', edit_evento_path(@evento), class: "btn btn-primary" %> |
+<%= link_to 'Voltar', :back, class: "btn btn-secondary" %>
 

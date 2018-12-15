@@ -33,13 +33,17 @@
   </p>
 
   <p>
+    <%if !event.horario.nil? %>
     <strong>Horario:</strong>
     <%= event.horario.strftime("%I:%M%p") %>
+    <% end %>
   </p>
 
   <p>
+    <%if !event.prioridade.nil? %>
     <strong>Prioridade:</strong>
     <%= get_priority(event.prioridade) %>
+    <% end %>
   </p>
 
   <p>

@@ -5,8 +5,10 @@
     <li><%= link_to "Sair", destroy_user_session_path, method: :delete%></li>
   </ul>
   <ul>
-    <li><%= link_to "Grupo de Eventos", grupo_eventos_path %></li>
-    <li><%= link_to "Evento", eventos_path %></li>
+    <hr>
+    <%= link_to "Grupo de Eventos", grupo_eventos_path, class: "btn btn-primary"  %>
+    <%= link_to "Eventos", eventos_path, class: "btn btn-primary" %>
+    <hr>
   </ul>
 
   <ul class="user-profiles-list-basic">
@@ -22,17 +24,20 @@
         </h3>
 
         <p>
-          <h4>
-            <%= event.descricao %>
-          </h4>
+
+        <h4>
+          <%= event.descricao %>
+        </h4>
+
+
           <span>
           <%= event.dia %>
             <%= event.horario.strftime("%I:%M%p") %>
           </span>
         </p>
         <p>
-          <%= link_to 'Show', event %>
-          <%= link_to 'Concluir','evento/concluir/'+get_id(event) %>
+          <%= link_to 'Mostrar', event, class: "btn btn-primary" %>
+          <%= link_to 'Concluir','evento/concluir/'+get_id(event), class: "btn btn-success" %>
         </p>
         <a class="delete" href=""><i class="fa fa-close"></i></a>
 
