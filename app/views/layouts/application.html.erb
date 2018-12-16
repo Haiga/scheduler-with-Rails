@@ -1,15 +1,40 @@
 <!DOCTYPE html>
+
+
+
 <html>
-  <head>
-    <title>Agenda</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+
 
   <body>
+      <nav class="navbar navbar-expand-lg">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/grupo_eventos">Grupos</a>
+            <a class="nav-item nav-link" href="/eventos">Eventos</a>
+          </div>
+        </div>
+        <span class="navbar-text">
+          <% if user_signed_in? %>
+
+              <%= current_user.email %>
+              <%= link_to "Sair", destroy_user_session_path, method: :delete%>
+
+          <% end %>
+        </span>
+      </nav>
     <%= yield %>
   </body>
 </html>
+
+
+

@@ -1,61 +1,63 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>
-    <%= @grupo_evento.nome %>
-  </strong>
-</p>
 
-<p>
-    <%= @grupo_evento.descricao %>
-</p>
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Prioridade:</strong>
-  <%= get_priority(@grupo_evento.prioridade) %>
-</p>
-<hr>
-<% for event in @eventos_of_group%>
+    <p>
+      <strong>
+        <%= @grupo_evento.nome %>
+      </strong>
+    </p>
 
-  <p>
-    <strong>Grupo evento:</strong>
-    <%= event.grupo_evento.nome %>
-  </p>
+    <p>
+        <%= @grupo_evento.descricao %>
+    </p>
 
-  <p>
-    <strong>Descricao:</strong>
-    <%= event.descricao %>
-  </p>
+    <p>
+      <strong>Prioridade:</strong>
+      <%= get_priority(@grupo_evento.prioridade) %>
+    </p>
 
-  <p>
-    <strong>Dia:</strong>
-    <%= event.dia %>
-  </p>
+    <%= link_to 'Editar', edit_grupo_evento_path(@grupo_evento), class: "btn btn-primary" %> |
+    <%= link_to 'Voltar', :back, class: "btn btn-secondary" %>
 
-  <p>
-    <%if !event.horario.nil? %>
-    <strong>Horario:</strong>
-    <%= event.horario.strftime("%I:%M%p") %>
+    <hr>
+    <% for event in @eventos_of_group%>
+      <div class="form-group">
+      <p>
+        <strong>Descricao:</strong>
+        <%= event.descricao %>
+      </p>
+
+      <p>
+        <strong>Dia:</strong>
+        <%= event.dia %>
+      </p>
+
+      <p>
+        <%if !event.horario.nil? %>
+        <strong>Horario:</strong>
+        <%= event.horario.strftime("%I:%M%p") %>
+        <% end %>
+      </p>
+
+      <p>
+        <%if !event.prioridade.nil? %>
+        <strong>Prioridade:</strong>
+        <%= get_priority(event.prioridade) %>
+        <% end %>
+      </p>
+
+      <p>
+        <strong>Estado:</strong>
+        <%= get_estado(event.estado) %>
+      </p>
+
+      <%= link_to 'Mostrar', event, class: "btn btn-primary" %>
+      <%= link_to 'Destruir', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary" %>
+      <%= link_to 'Concluir','evento/concluir/'+get_id(event),class: "btn btn-success"  %>
+      </div>
+      <hr>
     <% end %>
-  </p>
 
-  <p>
-    <%if !event.prioridade.nil? %>
-    <strong>Prioridade:</strong>
-    <%= get_priority(event.prioridade) %>
-    <% end %>
-  </p>
-
-  <p>
-    <strong>Estado:</strong>
-    <%= get_estado(event.estado) %>
-  </p>
-
-  <%= link_to 'Show', event %>
-  <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
-
-<hr>
-<%= link_to 'Edit', edit_grupo_evento_path(@grupo_evento) %> |
-<%= link_to 'Back', :back %>
+    <hr>
 

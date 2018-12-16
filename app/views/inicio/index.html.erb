@@ -1,9 +1,7 @@
-<h1>Minha agenda</h1>
+
 <% if user_signed_in? %>
-  <ul>
-    <li><%= current_user.email %></li>
-    <li><%= link_to "Sair", destroy_user_session_path, method: :delete%></li>
-  </ul>
+
+  <p id="notice"><%= notice %></p>
   <ul>
     <hr>
     <%= link_to "Grupo de Eventos", grupo_eventos_path, class: "btn btn-primary"  %>
@@ -29,11 +27,13 @@
           <%= event.descricao %>
         </h4>
 
-
+        <%if !event.horario.nil? %>
           <span>
+
           <%= event.dia %>
             <%= event.horario.strftime("%I:%M%p") %>
           </span>
+        <% end %>
         </p>
         <p>
           <%= link_to 'Mostrar', event, class: "btn btn-primary" %>
@@ -52,4 +52,6 @@
     <li><%= link_to "Cadastro", new_user_registration_path %></li>
     <li><%= link_to "Logar", new_user_session_path %></li>
   </ul>
+
+
 <% end %>
