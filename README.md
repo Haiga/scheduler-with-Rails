@@ -1,24 +1,24 @@
-# README
+# AgendaRails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicação para cadastro de Agendamento de suas atividades diárias.
 
-Things you may want to cover:
+## Getting Started
+Aplicação em esquema de calendário que mostra os agendamentos previamente cadastrados.
+É possível criar associações, Grupos e Subgrupos de atividades.
 
-* Ruby version
+### Prerequisites
+Para instalar o Ruby on Rails 
+```
+gem install rails
+```
 
-* System dependencies
+Para iniciar e aplicar as migrations que geram o banco de dados da sua aplicação:
 
-* Configuration
+```
+rake db create
+rake db migrate
+```
 
-* Database creation
+## Built With
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* [Devise](https://github.com/plataformatec/devise) - Autenticação para Rails
